@@ -5,7 +5,11 @@ using System.Text;
 using AlbumMuzyczny;
 
 
+// Zapisywanie kolekcji do pliku JSON
+//collection.SaveCollectionToJson("baza danych.json");
 
+// Wczytywanie kolekcji z pliku JSON
+//collection.LoadCollectionFromJson("baza_danych.json");
 
 namespace TestAlbumu
 {
@@ -26,6 +30,7 @@ namespace TestAlbumu
         static void Main(string[] args)
         {
             MusicCollection collection = new MusicCollection();
+            string file_path = @"C:\c#\baza danych.json";
             char c;
 
             do
@@ -36,11 +41,14 @@ namespace TestAlbumu
                     case 'a':
                     case 'A':
                         collection.AddDisc();
-                        
+                        collection.SaveCollectionToJson(file_path);
+
                         break;
                     case 'b':
                     case 'B':
+                        collection.LoadCollectionFromJson(file_path);
                         collection.DisplayAllDiscs();
+                        
 
                         break;
                     case 'c':

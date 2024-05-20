@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 
 namespace AlbumMuzyczny
 {
@@ -49,7 +50,7 @@ namespace AlbumMuzyczny
 
             List<Song> songList = new List<Song>();
 
-          
+
             Console.WriteLine("Dodawanie piosenek:");
             string input;
 
@@ -104,16 +105,16 @@ namespace AlbumMuzyczny
             {
                 totalDuration += song.Duration;
             }
-            
 
-            
+
+
             List<string> performers = new List<string>();
             foreach (var song in songList)
             {
-            
+
                 foreach (var performer in song.Performers)
                 {
-                   
+
                     if (!performers.Contains(performer))
                     {
                         performers.Add(performer);
@@ -123,18 +124,18 @@ namespace AlbumMuzyczny
 
             Console.WriteLine("Podaj numer albumu: ");
             int discNumber = Convert.ToInt32(Console.ReadLine());
-            
+
             Disc disc = new Disc
             {
                 Title = title,
-                Type = type, 
-                Duration = totalDuration,                                                   
+                Type = type,
+                Duration = totalDuration,
                 Songs = songList,
                 Performers = performers,
                 DiscNumber = discNumber
             };
 
-            return disc; 
+            return disc;
 
 
 
@@ -152,6 +153,29 @@ namespace AlbumMuzyczny
                 Console.WriteLine(disc.Title);
             }
             Console.ReadKey();
+        }
+
+        // Zapis
+        public void SaveCollectionToJson(string fileName)
+        {
+            string jsonString = JsonSerializer.Serialize(Discs);
+            File.WriteAllText(fileName, jsonString);
+            Console.WriteLine("Kolekcja zapisana do pliku JSON.");
+        }
+
+        //Odczyt
+        public void LoadCollectionFromJson(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                string jsonString = File.ReadAllText(fileName);
+                Discs = JsonSerializer.Deserialize<List<Disc>>(jsonString);
+                Console.WriteLine("Kolekcja wczytana z pliku JSON.");
+            }
+            else
+            {
+                Console.WriteLine("Plik JSON nie istnieje.");
+            }
         }
     }
 }
