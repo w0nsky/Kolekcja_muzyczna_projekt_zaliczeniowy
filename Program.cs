@@ -45,7 +45,6 @@ namespace TestAlbumu
                         break;
                     case 'c':
                     case 'C':
-                        Console.WriteLine("Test gita");
 
                         break;
                     case 'd':
