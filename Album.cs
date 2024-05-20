@@ -140,9 +140,8 @@ namespace AlbumMuzyczny
 
 
         }
-        public void AddDisc()
+        public void AddDisc(Disc discToAdd)
         {
-            Disc discToAdd = AddingDisc();
             Discs.Add(discToAdd);
         }
 

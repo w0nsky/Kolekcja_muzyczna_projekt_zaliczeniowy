@@ -40,7 +40,8 @@ namespace TestAlbumu
                 {
                     case 'a':
                     case 'A':
-                        collection.AddDisc();
+                        Disc newDisc = collection.AddingDisc();
+                        collection.AddDisc(newDisc);
                         collection.SaveCollectionToJson(file_path);
 
                         break;
