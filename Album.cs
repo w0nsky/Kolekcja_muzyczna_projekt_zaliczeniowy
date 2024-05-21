@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Text.Json;
 
 namespace AlbumMuzyczny
@@ -39,7 +40,7 @@ namespace AlbumMuzyczny
             do
             {
                 Console.WriteLine("Podaj typ płyty (CD / DVD):");
-                type = Console.ReadLine();
+                type = Console.ReadLine().ToLower();
 
                 if (type != "CD" && type != "DVD")
                 {
@@ -175,6 +176,40 @@ namespace AlbumMuzyczny
             {
                 Console.WriteLine("Plik JSON nie istnieje.");
             }
+        }
+
+        //Szczegółowe informacje na temat płyty 
+        public void DisplayInformationDisc() {
+            Console.WriteLine("Podaj tytuł płyty: ");
+            string whichTitle = Console.ReadLine().ToLower();
+
+            bool found = false;
+
+            foreach (Disc disc in Discs)
+            {
+                if(disc.Title == whichTitle)
+                {
+                    Console.Clear();
+                    Console.WriteLine($"Tytuł płyty : {disc.Title} \nTyp płyty : {disc.Type}");
+                    Console.WriteLine($"Czas łączny trwania utworów : {disc.Duration}");
+                    Console.WriteLine("Spis utworów na płycie");
+                    foreach(Song song in disc.Songs)
+                    {
+                        Console.WriteLine($"\t{song.TrackNumber}.{song.Title}");
+                    }
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                Console.Clear();
+                Console.WriteLine($"Nie znaleziono płyty o nazwie {whichTitle}");
+            }
+
+            
+            Console.ReadKey();
+
         }
     }
 }

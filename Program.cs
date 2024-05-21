@@ -49,11 +49,13 @@ namespace TestAlbumu
                     case 'B':
                         collection.LoadCollectionFromJson(file_path);
                         collection.DisplayAllDiscs();
-                        
-
+  
                         break;
                     case 'c':
                     case 'C':
+                        collection.LoadCollectionFromJson(file_path);
+                        collection.DisplayInformationDisc();
+
 
                         break;
                     case 'd':
