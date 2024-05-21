@@ -179,6 +179,7 @@ namespace AlbumMuzyczny
         }
 
         //Szczegółowe informacje na temat płyty 
+
         public void DisplayInformationDisc() {
             Console.WriteLine("Podaj tytuł płyty: ");
             string whichTitle = Console.ReadLine().ToLower();
