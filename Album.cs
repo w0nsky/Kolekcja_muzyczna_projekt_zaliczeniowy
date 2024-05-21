@@ -188,7 +188,7 @@ namespace AlbumMuzyczny
 
             foreach (Disc disc in Discs)
             {
-                if(disc.Title == whichTitle)
+                if(disc.Title.ToLower() == whichTitle)
                 {
                     Console.Clear();
                     Console.WriteLine($"Tytuł płyty : {disc.Title} \nTyp płyty : {disc.Type}");
@@ -209,6 +209,49 @@ namespace AlbumMuzyczny
             }
 
             
+            Console.ReadKey();
+
+        }
+        //Wyświetlenie wszystkich wykonawców na płycie 
+        public void showPerformersOnAlbum()
+        {
+            Console.WriteLine("Podaj tytuł płyty: ");
+            string whichTitle = Console.ReadLine().ToLower();
+            
+            bool found = false;
+
+            foreach (Disc disc in Discs)
+            {
+                if (disc.Title.ToLower() == whichTitle)
+                {
+                    Console.Clear();
+                    HashSet<string> uniquePerformers = new HashSet<string>();
+
+                    foreach (Song song in disc.Songs)
+                    {
+                        foreach (string performer in song.Performers)
+                        {
+                            uniquePerformers.Add(performer);
+                        }
+                    }
+
+                    Console.WriteLine($"Wykonawcy na płycie {disc.Title}");
+                    foreach( string performer in uniquePerformers)
+                    {
+                        Console.WriteLine($"\t-{performer}");
+                    }
+
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                Console.Clear();
+                Console.WriteLine($"Nie znaleziono płyty o nazwie {whichTitle}");
+            }
+
+
             Console.ReadKey();
 
         }

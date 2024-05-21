@@ -60,6 +60,8 @@ namespace TestAlbumu
                         break;
                     case 'd':
                     case 'D':
+                        collection.LoadCollectionFromJson(file_path);
+                        collection.showPerformersOnAlbum();
 
                         break;
                     case 'e':
