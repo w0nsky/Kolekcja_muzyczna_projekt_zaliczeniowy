@@ -40,7 +40,7 @@ namespace AlbumMuzyczny
             do
             {
                 Console.WriteLine("Podaj typ płyty (CD / DVD):");
-                type = Console.ReadLine().ToLower();
+                type = Console.ReadLine().ToUpper();
 
                 if (type != "CD" && type != "DVD")
                 {
@@ -50,11 +50,8 @@ namespace AlbumMuzyczny
             while (type != "CD" && type != "DVD");
 
             List<Song> songList = new List<Song>();
-
-
             Console.WriteLine("Dodawanie piosenek:");
             string input;
-
             do
             {
                 Song song = new Song();
@@ -99,15 +96,11 @@ namespace AlbumMuzyczny
 
             } while (Console.ReadLine().ToLower() == "t");
 
-
-
             TimeSpan totalDuration = TimeSpan.Zero;
             foreach (var song in songList)
             {
                 totalDuration += song.Duration;
             }
-
-
 
             List<string> performers = new List<string>();
             foreach (var song in songList)
@@ -125,7 +118,6 @@ namespace AlbumMuzyczny
 
             Console.WriteLine("Podaj numer albumu: ");
             int discNumber = Convert.ToInt32(Console.ReadLine());
-
             Disc disc = new Disc
             {
                 Title = title,
@@ -179,7 +171,6 @@ namespace AlbumMuzyczny
         }
 
         //Szczegółowe informacje na temat płyty 
-
         public void DisplayInformationDisc() {
             Console.WriteLine("Podaj tytuł płyty: ");
             string whichTitle = Console.ReadLine().ToLower();
@@ -207,10 +198,7 @@ namespace AlbumMuzyczny
                 Console.Clear();
                 Console.WriteLine($"Nie znaleziono płyty o nazwie {whichTitle}");
             }
-
-            
             Console.ReadKey();
-
         }
         //Wyświetlenie wszystkich wykonawców na płycie 
         public void showPerformersOnAlbum()
@@ -234,13 +222,11 @@ namespace AlbumMuzyczny
                             uniquePerformers.Add(performer);
                         }
                     }
-
                     Console.WriteLine($"Wykonawcy na płycie {disc.Title}");
                     foreach( string performer in uniquePerformers)
                     {
                         Console.WriteLine($"\t-{performer}");
                     }
-
                     found = true;
                     break;
                 }
@@ -250,11 +236,10 @@ namespace AlbumMuzyczny
                 Console.Clear();
                 Console.WriteLine($"Nie znaleziono płyty o nazwie {whichTitle}");
             }
-
-
             Console.ReadKey();
-
         }
+
+        //Wyświetlenie szczegółowych informacji o płycie
         public void DisplaySongDetailsOnAlbum() {
             Console.WriteLine("Podaj tytuł płyty: ");
             string whichTitle = Console.ReadLine().ToLower();
@@ -273,14 +258,29 @@ namespace AlbumMuzyczny
                     }
                     Console.WriteLine("Wybierz numer utworu o którym chcesz dowiedzieć się więcej");
                     int whichSong = Convert.ToInt16(Console.ReadLine());
-                    
+                    Console.Clear();
                     foreach (Song song in disc.Songs)
                     {
                         if (song.TrackNumber == whichSong) {
-                            Console.WriteLine("");
-                        }
+                            Console.WriteLine($"\tTytuł Utworu: '{song.TrackNumber}'");
+                            Console.WriteLine($"\tCzas trwania utworu: {song.Duration}");
+                            Console.WriteLine($"\tSpis wykonawców utworu:");
+                            int i = 1;
+                            foreach(string performer in song.Performers)
+                            {
+                                Console.WriteLine($"\t\t{i}.{performer}");
+                                i++;
+                            }
+                            Console.WriteLine($"\tKompozytor utworu: {song.Composer}");
+                            foundSong = true;
+                            break;
+                        }   
                     }
-
+                    if (!foundSong)
+                    {
+                        Console.Clear();
+                        Console.WriteLine($"Nie znaleziono utworu o numerze {whichSong}");
+                    }
                     foundAlbum = true;
                     break;
                 }
@@ -290,11 +290,7 @@ namespace AlbumMuzyczny
                 Console.Clear();
                 Console.WriteLine($"Nie znaleziono płyty o nazwie {whichTitle}");
             }
-
-
             Console.ReadKey();
-
-
         }
     }
 }

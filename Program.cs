@@ -4,26 +4,38 @@ using System.Collections.Generic;
 using System.Text;
 using AlbumMuzyczny;
 
-
-// Zapisywanie kolekcji do pliku JSON
-//collection.SaveCollectionToJson("baza danych.json");
-
-// Wczytywanie kolekcji z pliku JSON
-//collection.LoadCollectionFromJson("baza_danych.json");
-
 namespace TestAlbumu
 {
     class Program
     {
         static char Menu()
         {
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.Clear();
-            Console.WriteLine("\n\t\tA - Dodaj płytę do bazy danych");
-            Console.WriteLine("\n\t\tB - Wyświetl wszystkie płyty");
-            Console.WriteLine("\n\t\tC - Wyświetl sczegółowe informacje na temat płyty");
-            Console.WriteLine("\n\t\tD - Wyświetl wykonawców");
-            Console.WriteLine("\n\t\tE - Wyświetl szegółowe informacje na temat wybranego utworu z danej płyty");
-            Console.WriteLine("\n\t\tK - Koniec");
+            Console.WriteLine("\n");
+            //Napis wygenerowany przy pomocy https://patorjk.com/software/taag/#p=display&f=ANSI%20Regular&t=
+            Console.WriteLine("██╗  ██╗ ██████╗ ██╗     ███████╗██╗  ██╗ ██████╗     ██╗ █████╗       ");
+            Console.WriteLine("██║ ██╔╝██╔═══██╗██║     ██╔════╝██║ ██╔╝██╔════╝     ██║██╔══██╗      ");
+            Console.WriteLine("█████╔╝ ██║   ██║██║     █████╗  █████╔╝ ██║          ██║███████║      ");
+            Console.WriteLine("██╔═██╗ ██║   ██║██║     ██╔══╝  ██╔═██╗ ██║     ██   ██║██╔══██║      ");
+            Console.WriteLine("██║  ██╗╚██████╔╝███████╗███████╗██║  ██╗╚██████╗╚█████╔╝██║  ██║      ");
+            Console.WriteLine("╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚════╝ ╚═╝  ╚═╝      ");
+            Console.WriteLine("                                                                       ");
+            Console.WriteLine("███╗   ███╗██╗   ██╗███████╗██╗   ██╗ ██████╗███████╗███╗   ██╗ █████╗ ");
+            Console.WriteLine("████╗ ████║██║   ██║╚══███╔╝╚██╗ ██╔╝██╔════╝╚══███╔╝████╗  ██║██╔══██╗");
+            Console.WriteLine("██╔████╔██║██║   ██║  ███╔╝  ╚████╔╝ ██║       ███╔╝ ██╔██╗ ██║███████║");
+            Console.WriteLine("██║╚██╔╝██║██║   ██║ ███╔╝    ╚██╔╝  ██║      ███╔╝  ██║╚██╗██║██╔══██║");
+            Console.WriteLine("██║ ╚═╝ ██║╚██████╔╝███████╗   ██║   ╚██████╗███████╗██║ ╚████║██║  ██║");
+            Console.WriteLine("╚═╝     ╚═╝ ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝");
+            Console.WriteLine("                                                                       ");
+
+            Console.WriteLine("\n\tA - Dodaj płytę do bazy danych");
+            Console.WriteLine("\n\tB - Wyświetl wszystkie płyty");
+            Console.WriteLine("\n\tC - Wyświetl sczegółowe informacje na temat płyty");
+            Console.WriteLine("\n\tD - Wyświetl wykonawców");
+            Console.WriteLine("\n\tE - Wyświetl szegółowe informacje na temat wybranego utworu z danej płyty");
+            Console.WriteLine("\n\tK - Koniec");
             return Console.ReadKey(true).KeyChar;
 
         }
@@ -32,7 +44,7 @@ namespace TestAlbumu
             MusicCollection collection = new MusicCollection();
             string file_path = @"C:\c#\baza danych.json";
             char c;
-
+            collection.LoadCollectionFromJson(file_path);
             do
             {
                 c = Menu();
@@ -43,34 +55,24 @@ namespace TestAlbumu
                         Disc newDisc = collection.AddingDisc();
                         collection.AddDisc(newDisc);
                         collection.SaveCollectionToJson(file_path);
-
                         break;
                     case 'b':
                     case 'B':
-                        collection.LoadCollectionFromJson(file_path);
                         collection.DisplayAllDiscs();
-  
                         break;
                     case 'c':
                     case 'C':
-                        collection.LoadCollectionFromJson(file_path);
                         collection.DisplayInformationDisc();
-
-
                         break;
                     case 'd':
                     case 'D':
-                        collection.LoadCollectionFromJson(file_path);
                         collection.showPerformersOnAlbum();
 
                         break;
                     case 'e':
                     case 'E':
-                        collection.LoadCollectionFromJson(file_path);
                         collection.DisplaySongDetailsOnAlbum();
-
-                        break;
-                    
+                        break;   
                 }
             }
             while (!(c == 'k' || c == 'K'));
