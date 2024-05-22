@@ -66,6 +66,8 @@ namespace TestAlbumu
                         break;
                     case 'e':
                     case 'E':
+                        collection.LoadCollectionFromJson(file_path);
+                        collection.DisplaySongDetailsOnAlbum();
 
                         break;
                     

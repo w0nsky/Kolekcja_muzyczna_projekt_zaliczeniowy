@@ -255,5 +255,46 @@ namespace AlbumMuzyczny
             Console.ReadKey();
 
         }
+        public void DisplaySongDetailsOnAlbum() {
+            Console.WriteLine("Podaj tytuł płyty: ");
+            string whichTitle = Console.ReadLine().ToLower();
+            bool foundSong = false;
+            bool foundAlbum = false;
+
+            foreach (Disc disc in Discs)
+            {
+                if (disc.Title.ToLower() == whichTitle)
+                {
+                    Console.Clear();
+                    Console.WriteLine($"Utwory na płycie: ");
+                    foreach (Song song in disc.Songs)
+                    {
+                        Console.WriteLine($"\t{song.TrackNumber}.{song.Title}");
+                    }
+                    Console.WriteLine("Wybierz numer utworu o którym chcesz dowiedzieć się więcej");
+                    int whichSong = Convert.ToInt16(Console.ReadLine());
+                    
+                    foreach (Song song in disc.Songs)
+                    {
+                        if (song.TrackNumber == whichSong) {
+                            Console.WriteLine("");
+                        }
+                    }
+
+                    foundAlbum = true;
+                    break;
+                }
+            }
+            if (!foundAlbum)
+            {
+                Console.Clear();
+                Console.WriteLine($"Nie znaleziono płyty o nazwie {whichTitle}");
+            }
+
+
+            Console.ReadKey();
+
+
+        }
     }
 }
