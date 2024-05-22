@@ -19,4 +19,4 @@
     \|__|     \|__| \|_______| \|_______||\___/ /         \|_______| \|_______| \|__| \|__| \|__|\|__|
                                          \|___|/                                                      
 </pre>
-<h1><b>W 45 linijce zmień ścieżkę do miejsca w którym chcesz przechowywać swoją bazę (string file_path = <u>@"C:\c#\baza danych.json"</u>;)</b></h1>
+<h1>W 45 linijce zmień ścieżkę do miejsca w którym chcesz przechowywać swoją bazę (string file_path = <u>@"C:\c#\baza danych.json"</u>;)</h1>
