@@ -12,6 +12,9 @@ namespace AlbumMuzyczny
         public string Composer { get; set; }
         public int TrackNumber { get; set; }
 
+        public Song() : this("Unknown", new TimeSpan(0, 0, 0), new List<string> { "Unknown" }, "Unknown", 1)
+        {
+        }
         public Song(string title, TimeSpan duration, List<string> performers, string composer, int trackNumber)
         {
             Title = title;
@@ -20,6 +23,7 @@ namespace AlbumMuzyczny
             Composer = composer;
             TrackNumber = trackNumber;
         }
+        
     }
 
     public struct Disc
@@ -31,6 +35,9 @@ namespace AlbumMuzyczny
         public List<string> Performers { get; set; }
         public int DiscNumber { get; set; }
 
+        public Disc() : this("Unknow", "CD",new TimeSpan(0,0,0), [new Song()], ["Unknow"], 1) 
+        { 
+        }
         public Disc(string title, string type, TimeSpan duration, List<Song> songs, List<string> performers, int discNumber)
         {
             Title = title;
@@ -50,6 +57,11 @@ namespace AlbumMuzyczny
         {
             Discs = new List<Disc>();
         }
+        public MusicCollection(List<Disc> discs)
+        {
+            Discs = discs;
+        }
+
         public Disc AddingDisc()
         {
             Console.WriteLine("Podaj tytuł płyty");
