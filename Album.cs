@@ -35,7 +35,7 @@ namespace AlbumMuzyczny
         public List<string> Performers { get; set; }
         public int DiscNumber { get; set; }
 
-        public Disc() : this("Unknow", "CD",new TimeSpan(0,0,0), [new Song()], ["Unknow"], 1) 
+        public Disc() : this("Unknow", "CD",new TimeSpan(0,0,0), new List<Song> { new Song("Unknown", new TimeSpan(0, 0, 0), new List<string> { "Unknown" }, "Unknown", 1) }, new List<string> { "Unknown" }, 1) 
         { 
         }
         public Disc(string title, string type, TimeSpan duration, List<Song> songs, List<string> performers, int discNumber)
