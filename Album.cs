@@ -73,42 +73,40 @@ namespace AlbumMuzyczny
             string input;
             do
             {
-                Song song = new Song();
-
+                int tracknumber = 0;
                 Console.WriteLine("Podaj tytuł piosenki:");
-                song.Title = Console.ReadLine();
+                string songTitle = Console.ReadLine();
 
                 Console.WriteLine("Podaj czas trwania piosenki (w formacie HH:mm:ss):");
                 string durationInput = Console.ReadLine();
                 if (TimeSpan.TryParse(durationInput, out TimeSpan duration))
                 {
-                    song.Duration = duration;
+                   //Czas jest ok 
                 }
                 else
                 {
                     Console.WriteLine("Błędny format czasu. Użyj formatu HH:mm:ss.");
-                    continue; // Kontynuuj pętlę bez dodawania błędnie wprowadzonej piosenki
+                    continue;
                 }
 
                 Console.WriteLine("Podaj wykonawców (naciśnij 'k' aby zakończyć):");
-                song.Performers = new List<string>();
+                List<string> performersList = new List<string>();
                 string performerInput;
                 do
                 {
                     performerInput = Console.ReadLine();
                     if (performerInput.ToLower() != "k")
                     {
-                        song.Performers.Add(performerInput);
+                        performersList.Add(performerInput);
                     }
                 }
                 while (performerInput.ToLower() != "k");
 
                 Console.WriteLine("Podaj kompozytora:");
-                song.Composer = Console.ReadLine();
+                string songComposer = Console.ReadLine();
+                tracknumber++;
 
-                Console.WriteLine("Podaj numer utworu na płycie:");
-                song.TrackNumber = Convert.ToInt32(Console.ReadLine());
-
+                Song song = new Song(songTitle,duration,performersList,songComposer,tracknumber);
                 songList.Add(song);
 
                 Console.WriteLine("Czy chcesz dodać kolejną piosenkę? (t/n)");
@@ -137,15 +135,7 @@ namespace AlbumMuzyczny
 
             Console.WriteLine("Podaj numer albumu: ");
             int discNumber = Convert.ToInt32(Console.ReadLine());
-            Disc disc = new Disc
-            {
-                Title = title,
-                Type = type,
-                Duration = totalDuration,
-                Songs = songList,
-                Performers = performers,
-                DiscNumber = discNumber
-            };
+            Disc disc = new Disc(title, type, totalDuration, songList, performers, discNumber);
 
             return disc;
 
