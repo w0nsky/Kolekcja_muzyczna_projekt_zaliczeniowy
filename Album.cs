@@ -4,16 +4,25 @@ using System.Text.Json;
 
 namespace AlbumMuzyczny
 {
-    public class Song
+    public struct Song
     {
         public string Title { get; set; }
         public TimeSpan Duration { get; set; }
         public List<string> Performers { get; set; }
         public string Composer { get; set; }
         public int TrackNumber { get; set; }
+
+        public Song(string title, TimeSpan duration, List<string> performers, string composer, int trackNumber)
+        {
+            Title = title;
+            Duration = duration;
+            Performers = performers ?? new List<string>();
+            Composer = composer;
+            TrackNumber = trackNumber;
+        }
     }
 
-    public class Disc
+    public struct Disc
     {
         public string Title { get; set; }
         public string Type { get; set; }
@@ -21,6 +30,16 @@ namespace AlbumMuzyczny
         public List<Song> Songs { get; set; }
         public List<string> Performers { get; set; }
         public int DiscNumber { get; set; }
+
+        public Disc(string title, string type, TimeSpan duration, List<Song> songs, List<string> performers, int discNumber)
+        {
+            Title = title;
+            Type = type;
+            Duration = duration;
+            Songs = songs ?? new List<Song>();
+            Performers = performers ?? new List<string>();
+            DiscNumber = discNumber;
+        }
     }
 
     public class MusicCollection
