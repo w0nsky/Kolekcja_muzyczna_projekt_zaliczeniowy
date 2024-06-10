@@ -25,6 +25,7 @@ namespace AlbumMuzyczny
         }
         
     }
+    
 
     public struct Disc
     {
@@ -153,6 +154,17 @@ namespace AlbumMuzyczny
 
 
 
+        }
+        class DziedziczenieMusicCollection : MusicCollection {
+            public bool Dziedziczenie;
+            public DziedziczenieMusicCollection(): base(){
+            }
+
+            public DziedziczenieMusicCollection(List<Disc> discs, bool dziedziczenie) : base( discs)
+            {
+                Dziedziczenie = dziedziczenie;
+            }
+        
         }
         public void AddDisc(Disc discToAdd)
         {
